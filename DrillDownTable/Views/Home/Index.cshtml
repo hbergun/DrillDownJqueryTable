@@ -76,11 +76,6 @@
         });
 
         $('#example tbody').on('click', '#ShellButton', function () { //Table - 1 Base Shell Table //tr selector was deleted
-            //console.log("İlkine Tıkladın");
-
-            //var tr = $(this).closest('tr');
-            //var row = hostTable.row(tr);
-
             //Test Area Start
             var currentTableId = $(this).closest('table').attr('id');
             var currentTableRef = $(`#${currentTableId}`).DataTable(); //MY DATATABLE REF
@@ -122,19 +117,10 @@
                 tr.addClass('shown');
             }
         });
-
-
-
-
-
-
-        /////------------------------------------------------TEST ------------------------------------------------/////
-
     });
 
     function initialiseDataTable(tableName) {
         if (!$.fn.DataTable.isDataTable(`#${tableName}`)) {
-            // $(`#${tableName}`).DataTable().destroy();
             var apiReferance = $(`#${tableName}`).DataTable({
                 "info": false,
                 "paging": false,
@@ -163,6 +149,10 @@
         var button = '<i class="fa fa-plus-square" aria-hidden="true"></i>';
         console.log('Şuanda Değer' + n);
         return '<table id="example' + n + '" width="100%" style="padding-left:' + 15 * n + 'px;" class="display" cellspacing="0"> <thead> <tr> <th></th> <th>Full Name</th> <th>Extension Number</th> <th>Extra Info</th> </tr> </thead> <tbody> <tr> <td id="' + varID + '" class="details-control">' + button + '</td><td>' + 'Static' + '</td> <td>' + 'Stati' + '</td> <td>Bla</td> </tr> </tbody></table>'
+    }
+
+    function createChildDataTable() {
+
     }
 
     var testdata = {
