@@ -52,107 +52,7 @@
 <script>
     $(document).ready(function () {
         var globalCount = 5;
-        //var hostTable = $('#example').DataTable({
-        //    "data": testdata.data,
-        //    select: "single",
-        //    "columns": [
-        //        {
-        //            "className": 'details-control',
-        //            "orderable": false,
-        //            "data": null,
-        //            "defaultContent": '',
-        //            "render": function () {
-        //                return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
-        //            },
-        //            width: "15px"
-        //        },
-        //        { "data": "name" },
-        //        { "data": "position" },
-        //        { "data": "office" },
-        //        { "data": "salary" }
-        //    ],
-        //    "order": [[1, 'asc']]
-        //});
-        //var sitesTable;
-        //var bindTable;
-        //$('#example tbody').on('click', 'td.details-control', function () {
-        //    var tr = $(this).closest('tr');
-        //    var tdi = tr.find("i.fa");
-        //    var row = hostTable.row(tr);
 
-        //    if (row.child.isShown()) {
-        //        row.child.hide();// This row is already open - close it
-        //        tr.removeClass('shown');
-        //        //Only For İcon
-        //        tdi.first().removeClass('fa-minus-square');
-        //        tdi.first().addClass('fa-plus-square');
-        //    }
-
-        //    else {
-
-        //        if ($(this).attr('id') == 'child1') {
-        //            var tr = $(this).closest('tr');
-        //            var tdi = tr.find("i.fa");
-        //            var row = sitesTable.row(tr);
-
-        //            if (row.child.isShown()) {
-        //                row.child.hide();// This row is already open - close it
-        //                tr.removeClass('shown');
-        //                //Only For İcon
-        //                tdi.first().removeClass('fa-minus-square');
-        //                tdi.first().addClass('fa-plus-square');
-        //            }
-        //            else {
-        //                row.child(format(row.data(), 3)).show();
-        //              //  bindTable = $('#example' + 3 + '').DataTable({ //Make Example 3
-        //              //      "info": false,
-        //              //      "paging": false,
-        //              //      "searching": false,
-        //              //      "processing": true
-        //              //  });
-
-
-
-        //                // Open this row
-        //                tr.addClass('shown');
-        //                //Only For İcon
-        //                tdi.first().removeClass('fa-plus-square');
-        //                tdi.first().addClass('fa-minus-square');
-        //            }
-
-        //        }
-        //        else {
-        //            row.child(format(row.data(), 2)).show();
-        //            //sitesTable = $('#example' + 2 + '').DataTable({ //Make Example 2
-        //            //    "info": false,
-        //            //    "paging": false,
-        //            //    "searching": false,
-        //            //    "processing": true
-        //            //});
-
-        //            sitesTable = initialiseDataTable('example2');
-        //            // Open this row
-        //            tr.addClass('shown');
-        //            //Only For İcon
-        //            tdi.first().removeClass('fa-plus-square');
-        //            tdi.first().addClass('fa-minus-square');
-        //        }
-        //    }
-        //});
-
-
-
-
-        //hostTable.on("user-select", function (e, dt, type, cell, originalEvent) {
-        //    if ($(cell.node()).hasClass("details-control")) {
-        //        e.preventDefault();
-        //    }
-        //});
-
-
-
-
-        /////------------------------------------------------TEST /////------------------------------------------------
         var hostTable = $('#example').DataTable({
             "data": testdata.data,
             select: "single",
@@ -175,10 +75,18 @@
             "order": [[1, 'asc']]
         });
 
-        $('#example tbody').on('click', '#ShellButton', function () { //Table - 1 //tr selector was deleted
+        $('#example tbody').on('click', '#ShellButton', function () { //Table - 1 Base Shell Table //tr selector was deleted
             //console.log("İlkine Tıkladın");
+
+            //var tr = $(this).closest('tr');
+            //var row = hostTable.row(tr);
+
+            //Test Area Start
+            var currentTableId = $(this).closest('table').attr('id');
+            var currentTableRef = $(`#${currentTableId}`).DataTable(); //MY DATATABLE REF
             var tr = $(this).closest('tr');
-            var row = hostTable.row(tr);
+            var row = currentTableRef.row(tr);
+            //End
 
             if (row.child.isShown()) { //Açıksa Kapat
                 row.child.hide();
@@ -195,14 +103,14 @@
 
 
 
-        $('#example tbody').on('click', '#child', function () {  // Table - 2 and After 
-            var currentTableName = $(this).closest('table').attr('id');
-            var currentTableRef = $(`#${currentTableName}`).DataTable(); //MY DATATABLE REF
+        $('#example tbody').on('click', '#child', function () {  // Table - 2 and After
+            var currentTableId = $(this).closest('table').attr('id');
+            var currentTableRef = $(`#${currentTableId}`).DataTable(); //MY DATATABLE REF
             var tr = $(this).closest('tr');
             var row = currentTableRef.row(tr);
             //console.log(row.data()[1]); //For Only One Cell
 
-            if (row.child.isShown()) { //toggle close 
+            if (row.child.isShown()) { //toggle close
                 row.child.hide();
                 tr.removeClass('shown');
             }
